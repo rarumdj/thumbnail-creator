@@ -1,0 +1,504 @@
+body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+}
+
+h4{
+    font-size: medium !important;
+}
+
+.grp-handler-cp-c {
+    margin-left: -20px;
+}
+
+.default-container {
+    width: 100%;
+    height: 100%;
+    /* display: flex; */
+}
+
+.toolbar {
+    line-height: 0;
+    background-color: #fdfdfd;
+    box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+}
+
+.toolbar .main-buttons,
+.toolbar .extended-buttons {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.toolbar button {
+    width: 62px;
+    height: 54px;
+    opacity: 0.8;
+    clear: both;
+    border: 0;
+    border-radius: unset;
+    outline: none;
+    transition: 0.25s;
+}
+
+
+.toolbar button:hover {
+    opacity: 0.9;
+    border-right: 1px solid var(--color-gray-200) !important;
+    box-shadow: inset 0px 0px 2px 1px rgba(50, 50, 50, 0.1);
+}
+.toolbar button:first-child:hover{
+    border-left: 1px solid var(--color-gray-200);
+}
+
+.toolbar button.active,
+.toolbar button.focus,
+.toolbar button:focus {
+    background-color: white;
+    opacity: 1;
+    border-right: 1px solid var(--color-gray-200) !important;
+    box-shadow: inset 0px 0px 2px 2px rgba(240, 240, 240, 0.1);
+}
+
+.toolbar button:first-child.active,
+.toolbar button:first-child.focus,
+.toolbar button:first-child:focus {
+    border-left: 1px solid var(--color-gray-200);
+}
+
+.toolbar button img,
+.toolbar button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.main-panel {
+    height: calc(100% - 54px);
+    max-height: calc(100% - 54px);
+    display: flex;
+    position: relative;
+}
+
+.toolpanel-container {
+    width: 300px;
+}
+
+.floating-zoom-level-container {
+    position: absolute;
+    z-index: 10000;
+    background: white;
+    padding: 10px 20px;
+    bottom: 0;
+    right: 0;
+    border: 1px solid #ccc;
+}
+
+.canvas-holder {
+    margin: auto;
+    max-width: calc(100% - 300px);
+    /* height: 100%; */
+    height: calc(100vh - 111px);
+    max-height: calc(100vh - 111px);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaeaea;
+    flex-grow: 1;
+}
+
+.canvas-container {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHUlEQVQ4jWNgYGAQIYAJglEDhoUBg9+FowbQ2gAARjwKARjtnN8AAAAASUVORK5CYII=");
+    background-size: 30px 30px;
+    border: 1px solid #ccc;
+    margin: auto;
+}
+
+.toolpanel {
+    background-color: #ffffff;
+    width: 300px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #ddd;
+    transition: all 0.4s;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 13px;
+    color: #777;
+    display: none;
+    position: absolute;
+    z-index: 9999;
+}
+
+.toolpanel.closed {
+    left: -300px;
+}
+
+.toolpanel.visible {
+    display: initial;
+}
+
+.toolpanel .content {
+    padding: 20px;
+    position: relative;
+    height: -webkit-fill-available;
+    height: -ms-fill-available;
+    height: fill-available;
+    height: -moz-fill-available;
+}
+
+.toolpanel .title {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    padding-bottom: 10px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.toolpanel .content .hide-show-handler {
+    position: absolute;
+    top: calc(50% - 40px);
+    right: -42px;
+    width: 40px;
+    height: 80px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+
+    background-image: url("../img/caret-left.svg");
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.toolpanel.closed .content .hide-show-handler {
+    background-image: url("../img/caret-right.svg");
+}
+
+.spectrum.with-add-on {
+    width: 40px;
+}
+
+#shapes-panel .button {
+    cursor: pointer;
+    line-height: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin: 9px;
+}
+
+#background-panel .canvas-size-setting input {
+    width: 60px;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 2px solid #e4e4e4;
+    padding: 4px 10px;
+    line-height: 18px;
+    font-size: 13px;
+}
+
+#select-panel .text-section .style button,
+#select-panel .alignment-section button,
+#select-panel .object-options button {
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+    outline: none;
+}
+
+#select-panel button svg {
+    opacity: 0.7;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+#select-panel .text-section .style,
+#select-panel .text-section .family,
+#select-panel .text-section .sizes,
+#select-panel .text-section .align,
+#select-panel .text-section .color {
+    margin-bottom: 20px;
+}
+
+#select-panel .text-section .sizes input {
+    width: 50px;
+}
+
+.toolpanel#select-panel .text-section,
+.toolpanel#select-panel .effect-section {
+    display: none;
+}
+
+.toolpanel#select-panel.type-group .border-section {
+    display: none;
+}
+
+.toolpanel#select-panel.type-group .fill-section {
+    display: none;
+}
+
+.toolpanel#select-panel.type-textbox .text-section {
+    display: block;
+}
+
+.toolpanel#select-panel.type-textbox .fill-section {
+    display: none;
+}
+
+.toolpanel#select-panel.type-image .effect-section {
+    display: block;
+}
+
+.toolpanel#select-panel.type-image .fill-section {
+    display: none;
+}
+
+.custom-modal-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #3333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-modal-content {
+    background: white;
+    width: max-content;
+    padding: 20px;
+}
+
+.custom-modal-content .button-download {
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.custom-modal-content .button-download:hover {
+    background: #ccc;
+    transition: 0.3s;
+}
+
+.toolpanel .input-container {
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.toolpanel .input-container label {
+    width: 50%;
+}
+
+.toolpanel .input-container select {
+    width: 50%;
+    height: 29px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.toolpanel .input-container .sp-replacer {
+    width: 50%;
+}
+
+.toolpanel .input-container .custom-number-input {
+    background: #ebebeb;
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    height: 30px;
+    background-color: #e4e4e4;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.toolpanel .input-container .custom-number-input button {
+    width: 36px !important;
+    height: 30px !important;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 6px;
+    color: #333;
+    border: 1px solid transparent;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+
+.toolpanel .input-container .custom-number-input input {
+    height: 30px !important;
+    width: 60px !important;
+    background: transparent !important;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+.toolpanel
+    .input-container
+    .custom-number-input
+    input::-webkit-outer-spin-button,
+.toolpanel
+    .input-container
+    .custom-number-input
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.toolpanel .input-container .custom-number-input input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.tab-container .tabs {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tab-container .tabs .tab-label {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.tab-container .tabs .tab-label.active {
+    color: black;
+}
+
+.gradient-orientation-container {
+    padding-top: 40px;
+}
+
+.drag-drop-input {
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed #ccc;
+    border-radius: 6px;
+    text-align: center;
+    padding: 120px;
+}
+
+.drag-drop-input.dragging {
+    border-color: #4368a9;
+}
+
+#tip-container {
+    padding: 10px;
+    text-align: center;
+    touch-action: none;
+    cursor: default;
+    color: #888;
+}
+
+/* button style */
+.default-container .toolbar button,
+.default-container .toolpanel button {
+    fill: var(--color-gray-800);
+}
+.default-container .toolbar button {
+    border-right: 1px solid var(--color-gray-300);
+}
+.default-container .toolbar button:first-child {
+    border-left: 1px solid var(--color-gray-300);
+}
+div.toolpanel button:not(.decrease) {
+    background-clip: padding-box;
+    border-radius: 4px;
+    color: var(--color-gray-600);
+    border: 1px solid var(--color-gray-100) !important;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.25s ease-in-out;
+}
+
+div.toolpanel button:not(.decrease):not(.increase) {
+    margin-bottom: 4px !important;
+}
+
+div.toolpanel button:hover {
+    background-color: var(--color-gray-100) !important;
+}
+div.toolpanel button:focus {
+    background-color: var(--color-gray-200) !important;
+}
+
+div.toolpanel div.alignment-section button:not([data-pos="bottom"]) {
+    border-right: 0px !important;
+}
+
+div.toolpanel div.alignment-section button[data-pos="left"] {
+    border-radius: 4px 0px 0px 4px !important;
+}
+div.toolpanel div.alignment-section button[data-pos="bottom"] {
+    border-radius: 0px 4px 4px 0px !important;
+}
+
+div.toolpanel
+    div.alignment-section
+    button:not([data-pos="bottom"]):not([data-pos="left"]) {
+    border-radius: 0px;
+}
+
+div.toolpanel {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gray-100) transparent;
+    transition: 0.25s;
+}
+div.toolpanel::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+div.toolpanel::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+/* Handle */
+div.toolpanel::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: rgba(50, 50, 50, 0.01);
+    transition: 0.25s;
+}
+
+/* Handle on hover */
+div.toolpanel:hover::-webkit-scrollbar-thumb {
+    background: rgba(50, 50, 50, 0.2);
+}
+
+/* .creator-btn-group button{
+
+} */
